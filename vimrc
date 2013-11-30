@@ -39,7 +39,6 @@
 
 " General {
 
-    set background=dark         " Assume a dark background
     if !has('gui')
         "set term=$TERM          " Make arrow and other keys work
     endif
@@ -115,6 +114,10 @@
 "        let g:solarized_visibility="normal"
 "        color solarized             " Load a colorscheme
 "    endif
+    
+    " Tom 2013-11-30 -- COLORSCHEME
+    set background=dark         " Assume a dark background
+    colorscheme solarized
 
     set tabpagemax=15               " Only show 15 tabs
     set showmode                    " Display the current mode
@@ -194,7 +197,148 @@
     autocmd FileType haskell setlocal commentstring=--\ %s
     " Workaround broken colour highlighting in Haskell
     autocmd FileType haskell setlocal nospell
+    " A little something from steve losh { 
+    set ttyfast
+    " }
 
 " }
 
+" Key (re)Mappings {
 
+    " The default leader is '\', but many people prefer ',' as it's in a standard
+    " location. To override this behavior and set it back to '\' (or any other
+    " character) add the following to your .vimrc.before.local file:
+    let mapleader = ','
+
+    " Tom on 2013-11-30
+    " Map space to toggle and ,space to clean out highlight
+    nnoremap <leader><space> :noh<cr>
+    " quick code folding
+    nnoremap <space> za 
+    " remap f1 to escape
+    inoremap <F1> <ESC>
+    nnoremap <F1> <ESC>
+    vnoremap <F1> <ESC>
+    " remap ; to : for saving files in n mode
+    nnoremap ; :
+    " remap jj to escape
+    inoremap jj <ESC>
+
+    " Remappings from spf13{
+
+    " Easier moving in tabs and windows
+    " The lines conflict with the default digraph mapping of <C-K>
+    " If you prefer that functionality, add the following to your
+    " .vimrc.before.local file:
+    "   let g:spf13_no_easyWindows = 1
+    if !exists('g:spf13_no_easyWindows')
+        map <C-J> <C-W>j<C-W>_
+        map <C-K> <C-W>k<C-W>_
+        map <C-L> <C-W>l<C-W>_
+        map <C-H> <C-W>h<C-W>_
+    endif
+
+    " Wrapped lines goes down/up to next row, rather than next line in file.
+    noremap j gj
+    noremap k gk
+
+    " Same for 0, home, end, etc
+    noremap $ g$
+    noremap <End> g<End>
+    noremap 0 g0
+    noremap <Home> g<Home>
+    noremap ^ g^
+
+    " The following two lines conflict with moving to top and
+    " bottom of the screen
+    " If you prefer that functionality, add the following to your
+    " .vimrc.before.local file:
+    "   let g:spf13_no_fastTabs = 1
+    if !exists('g:spf13_no_fastTabs')
+        map <S-H> gT
+        map <S-L> gt
+    endif
+
+    " Stupid shift key fixes
+    if !exists('g:spf13_no_keyfixes')
+        if has("user_commands")
+            command! -bang -nargs=* -complete=file E e<bang> <args>
+            command! -bang -nargs=* -complete=file W w<bang> <args>
+            command! -bang -nargs=* -complete=file Wq wq<bang> <args>
+            command! -bang -nargs=* -complete=file WQ wq<bang> <args>
+            command! -bang Wa wa<bang>
+            command! -bang WA wa<bang>
+            command! -bang Q q<bang>
+            command! -bang QA qa<bang>
+            command! -bang Qa qa<bang>
+        endif
+
+        cmap Tabe tabe
+    endif
+
+    " Yank from the cursor to the end of the line, to be consistent with C and D.
+    nnoremap Y y$
+
+    " Code folding options
+    nmap <leader>f0 :set foldlevel=0<CR>
+    nmap <leader>f1 :set foldlevel=1<CR>
+    nmap <leader>f2 :set foldlevel=2<CR>
+    nmap <leader>f3 :set foldlevel=3<CR>
+    nmap <leader>f4 :set foldlevel=4<CR>
+    nmap <leader>f5 :set foldlevel=5<CR>
+    nmap <leader>f6 :set foldlevel=6<CR>
+    nmap <leader>f7 :set foldlevel=7<CR>
+    nmap <leader>f8 :set foldlevel=8<CR>
+    nmap <leader>f9 :set foldlevel=9<CR>
+    " }
+" }
+
+
+" Functions {
+
+    " Initialize directories for backup etc {
+    function! InitializeDirectories()
+        let parent = $HOME
+        let prefix = 'vim'
+        let dir_list = {
+                    \ 'backup': 'backupdir',
+                    \ 'views': 'viewdir',
+                    \ 'swap': 'directory' }
+
+        if has('persistent_undo')
+            let dir_list['undo'] = 'undodir'
+        endif
+
+        " To specify a different directory in which to place the vimbackup,
+        " vimviews, vimundo, and vimswap files/directories, add the following to
+        " your .vimrc.before.local file:
+        "   let g:spf13_consolidated_directory = <full path to desired directory>
+        "   eg: let g:spf13_consolidated_directory = $HOME . '/.vim/'
+        if exists('g:spf13_consolidated_directory')
+            let common_dir = g:spf13_consolidated_directory . prefix
+        else
+            let common_dir = parent . '/.' . prefix
+        endif
+
+        for [dirname, settingname] in items(dir_list)
+            let directory = common_dir . dirname . '/'
+            if exists("*mkdir")
+                if !isdirectory(directory)
+                    call mkdir(directory)
+                endif
+            endif
+            if !isdirectory(directory)
+                echo "Warning: Unable to create backup directory: " . directory
+                echo "Try: mkdir -p " . directory
+            else
+                let directory = substitute(directory, " ", "\\\\ ", "g")
+                exec "set " . settingname . "=" . directory
+            endif
+        endfor
+    endfunction
+    call InitializeDirectories()
+    " }
+
+
+
+" }
