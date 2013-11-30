@@ -86,6 +86,7 @@ if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
 		  \ | wincmd p | diffthis
 endif
+let mapleader = ","
 " }
 
 " === From stevelosh ====
@@ -120,8 +121,9 @@ nnoremap ; :
 " remap jj to escape
 inoremap jj <ESC>
 
+" Bas
+
 " My collection of changes
-let mapleader = ","
 " always expand tabs, the rest of the settings are in ftplugins.
 set expandtab
 set background=dark
