@@ -8,17 +8,18 @@ set background=dark
 " 2013-11-29 Tom Sercu's adaptation of 
 " Based on the standard example for a vimrc file.
 " Extended with
-" http://stevelosh.com/blog/2010/09/coming-home-to-vim/#some-background-about-me
+" http://stevelosh.com/blog/2010/09/coming-home-to-vim
 "
 
 " enable pathogen
 filetype off
-call pathogen#incubate()
+call pathogen#infect()
 call pathogen#helptags()
-filetype plugin indent on
 
+" STUFF FROM 
 " its 2010, forget vi
 set nocompatible
+set modelines=0
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -32,9 +33,6 @@ set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
-
-" For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
-" let &guioptions = substitute(&guioptions, "t", "", "g")
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
