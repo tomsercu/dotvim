@@ -212,7 +212,7 @@
     " character) add the following to your .vimrc.before.local file:
     let mapleader = ','
 
-    " Tom on 2013-11-30
+    " Tom on 2013-11-30 {
     " Map space to toggle and ,space to clean out highlight
     nnoremap <leader><space> :noh<cr>
     " quick code folding
@@ -225,6 +225,7 @@
     nnoremap ; :
     " remap jj to escape
     inoremap jj <ESC>
+    " }
 
     " Remappings from spf13{
 
@@ -294,18 +295,32 @@
         nmap <leader>f9 :set foldlevel=9<CR>
 
         " Find merge conflict markers
-        nmap <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
+        " TODO AFTERWARDS since it fucks up the folding..
 
         " Visual shifting (does not exit Visual mode)
         vnoremap < <gv
         vnoremap > >gv
-        " dont fold this
     " }
 " }
 
+" Plugins {
+    " Fugitive {
+        nnoremap <silent> <leader>gs :Gstatus<CR>
+        nnoremap <silent> <leader>gd :Gdiff<CR>
+        nnoremap <silent> <leader>gc :Gcommit<CR>
+        nnoremap <silent> <leader>gb :Gblame<CR>
+        nnoremap <silent> <leader>gl :Glog<CR>
+        nnoremap <silent> <leader>gp :Git push<CR>
+        nnoremap <silent> <leader>gr :Gread<CR>
+        nnoremap <silent> <leader>gw :Gwrite<CR>
+        nnoremap <silent> <leader>ge :Gedit<CR>
+        nnoremap <silent> <leader>gg :SignifyToggle<CR>
+  
+    " }
+
+" }
 
 " Functions {
-
     " Initialize directories for backup etc {
     function! InitializeDirectories()
         let parent = $HOME
@@ -348,7 +363,4 @@
     endfunction
     call InitializeDirectories()
     " }
-
-
-
 " }
