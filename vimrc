@@ -11,8 +11,10 @@ set background=dark
 " http://stevelosh.com/blog/2010/09/coming-home-to-vim/#some-background-about-me
 "
 
+" enable pathogen
 filetype off
-call pathogen#runtime_append_all_bundles()
+call pathogen#incubate()
+call pathogen#helptags()
 filetype plugin indent on
 
 " its 2010, forget vi

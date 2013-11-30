@@ -18,4 +18,6 @@ Switch to the `~/.vim` directory, and fetch submodules:
 My notes
 ========
 ###Git and pathogen synchronization
-http://addisu.taddese.com/blog/using-github-and-pathogen-for-your-vim-config-files/
+Based on http://vimcasts.org/episodes/synchronizing-plugins-with-git-submodules-and-pathogen/ 
+Intro to pathogen: http://addisu.taddese.com/blog/using-github-and-pathogen-for-your-vim-config-files/
+
