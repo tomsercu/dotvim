@@ -21,6 +21,7 @@ call pathogen#helptags()
 set nocompatible
 set modelines=0
 
+" Stuff from vimrc_exammple {
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
@@ -94,3 +95,22 @@ if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
 		  \ | wincmd p | diffthis
 endif
+" }
+
+" From stevelosh
+set encoding=utf-8
+set showmode
+set hidden
+set wildmenu
+set wildmode=list:longest
+set visualbell
+set cursorline
+set ttyfast
+set ruler
+
+
+" My collection of changes
+let mapleader = ","
+" always expand tabss
+set expandtab
+

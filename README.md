@@ -21,3 +21,15 @@ My notes
 Based on http://vimcasts.org/episodes/synchronizing-plugins-with-git-submodules-and-pathogen/ 
 Intro to pathogen: http://addisu.taddese.com/blog/using-github-and-pathogen-for-your-vim-config-files/
 
+### Inspiration for my configuration
+http://stevelosh.com/blog/2010/09/coming-home-to-vim/#bundles-i-use
+maybe later: https://github.com/carlhuda/janus
+And of course spf13
+Also http://stackoverflow.com/questions/357785/what-is-the-recommended-way-to-use-vim-folding-for-python-code
+
+Plugins
+=======
++ fugitive (git support)
++ easymotion
+
+
