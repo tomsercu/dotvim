@@ -32,4 +32,10 @@ Plugins
 + fugitive (git support)
 + easymotion
 
+The vimrc
+========
+First part comes from $VIMRUNTIME/vimrc\_example.vim
+Second part comes from steve losh
+
+
 

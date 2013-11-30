@@ -1,11 +1,4 @@
-" My original vimrc before 2013-11-29
-syntax on
-filetype indent plugin on
-set background=dark
-
-
-
-" 2013-11-29 Tom Sercu's adaptation of 
+" 2013-11-29 Tom Sercu's adaptation of $VIMRUNTIME/vimrc_example.vim
 " Based on the standard example for a vimrc file.
 " Extended with
 " http://stevelosh.com/blog/2010/09/coming-home-to-vim
@@ -16,8 +9,8 @@ filetype off
 call pathogen#infect()
 call pathogen#helptags()
 
-" STUFF FROM 
-" its 2010, forget vi
+" STUFF FROM vimrc example
+" its 2013, forget vi
 set nocompatible
 set modelines=0
 
@@ -33,7 +26,6 @@ endif
 set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
-set incsearch		" do incremental searching
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
@@ -51,7 +43,6 @@ endif
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
   syntax on
-  set hlsearch
 endif
 
 " Only do this part when compiled with support for autocommands.
@@ -97,7 +88,7 @@ if !exists(":DiffOrig")
 endif
 " }
 
-" From stevelosh
+" === From stevelosh ====
 set encoding=utf-8
 set showmode
 set hidden
@@ -107,10 +98,33 @@ set visualbell
 set cursorline
 set ttyfast
 set ruler
-
+set laststatus=2
+set relativenumber
+set undofile
+" regex search handling and smart ignorecase
+nnoremap / /\v
+vnoremap / /\v
+set ignorecase
+set smartcase
+set gdefault
+set incsearch		" do incremental searching
+set showmatch
+set hlsearch
+nnoremap <leader><space> :noh<cr>
+" remap f1 to escape
+inoremap <F1> <ESC>
+nnoremap <F1> <ESC>
+vnoremap <F1> <ESC>
+" remap ; to : for saving files in n mode
+nnoremap ; :
+" remap jj to escape
+inoremap jj <ESC>
 
 " My collection of changes
 let mapleader = ","
-" always expand tabss
+" always expand tabs, the rest of the settings are in ftplugins.
 set expandtab
+set background=dark
+" quick code folding
+nnoremap <space> za 
 
