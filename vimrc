@@ -166,6 +166,7 @@
     set scrolljump=5                " Lines to scroll when cursor leaves screen
     set scrolloff=3                 " Minimum lines to keep above and below cursor
     set foldenable                  " Auto fold code
+    set foldmethod=manual           " Should be overridden in ftplugin files, also see remaps
     "set list                       " I dont like symbols for whitespace characters
     "set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 
@@ -219,6 +220,7 @@
     nnoremap <leader><space> :noh<cr>
     " quick code folding
     nnoremap <space> za 
+    vnoremap <space> zf    " visual mode, manual folding
     " remap f1 to escape
     inoremap <F1> <ESC>
     nnoremap <F1> <ESC>
