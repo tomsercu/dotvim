@@ -16,7 +16,7 @@
 
 " Environment {
 
-    " Basics {
+  ; " Basics {
         set nocompatible        " Must be first line
         if !(has('win16') || has('win32') || has('win64'))
             set shell=/bin/sh
@@ -92,6 +92,8 @@
             autocmd BufWinEnter * call ResCur()
         augroup END
     endif
+
+    set gdefault      " Default global search on line
 
     " Setting up the directories {
         set backup                  " Backups are nice ...
@@ -225,6 +227,8 @@
     nnoremap ; :
     " remap jj to escape
     inoremap jj <ESC>
+    " quick redo replace
+    nnoremap <leader>. @:
     " }
 
     " Remappings from spf13{
@@ -363,4 +367,19 @@
     endfunction
     call InitializeDirectories()
     " }
+    " Strip whitespace {
+    function! StripTrailingWhitespace()
+        " Preparation: save last search, and cursor position.
+        let _s=@/
+        let l = line(".")
+        let c = col(".")
+        " do the business:
+        %s/\s\+$//e
+        " clean up: restore previous search history, and cursor position
+        let @/=_s
+        call cursor(l, c)
+    endfunction
+    " }
+
+
 " }
