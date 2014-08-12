@@ -44,7 +44,7 @@
     endif
     filetype plugin indent on   " Automatically detect file types.
     syntax on                   " Syntax highlighting
-    set mouse=a                 " Automatically enable mouse usage
+    "set mouse=a                 " Automatically enable mouse usage
     set mousehide               " Hide the mouse cursor while typing
     scriptencoding utf-8
 
@@ -121,6 +121,8 @@
     set t_Co=16
     set background=dark         " Assume a dark background
     colorscheme solarized
+    "set background=light " Assume a dark background
+    "colorscheme default
 
     set tabpagemax=15               " Only show 15 tabs
     set showmode                    " Display the current mode
@@ -231,6 +233,9 @@
     inoremap jj <ESC>
     " quick redo replace
     nnoremap <leader>. @:
+    " make headings
+    map <leader>1 VypVr=kVj<leader>c<space>jo
+    map <leader>2 VypVr-kVj<leader>c<space>jo
     " }
 
     " Remappings from spf13{
