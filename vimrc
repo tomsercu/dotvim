@@ -44,7 +44,7 @@
     endif
     filetype plugin indent on   " Automatically detect file types.
     syntax on                   " Syntax highlighting
-    set mouse=a                 " Automatically enable mouse usage
+    "set mouse=a                 " Automatically enable mouse usage
     set mousehide               " Hide the mouse cursor while typing
     scriptencoding utf-8
 
@@ -137,7 +137,8 @@
         set showcmd                 " Show partial commands in status line and
                                     " Selected characters/lines in visual mode
     endif
-    set relativenumber
+    "set relativenumber
+    set number
 
     if has('statusline')
         set laststatus=2
@@ -231,6 +232,8 @@
     inoremap jj <ESC>
     " quick redo replace
     nnoremap <leader>. @:
+    " :E for explorer
+    nnoremap :E :Explore
     " }
 
     " Remappings from spf13{
