@@ -121,6 +121,8 @@
     set t_Co=16
     set background=dark         " Assume a dark background
     colorscheme solarized
+    "set background=light " Assume a dark background
+    "colorscheme default
 
     set tabpagemax=15               " Only show 15 tabs
     set showmode                    " Display the current mode
@@ -234,6 +236,9 @@
     nnoremap <leader>. @:
     " :E for explorer
     nnoremap :E :Explore
+    " make headings
+    map <leader>1 VypVr=kVj<leader>c<space>jo
+    map <leader>2 VypVr-kVj<leader>c<space>jo
     " }
 
     " Remappings from spf13{
